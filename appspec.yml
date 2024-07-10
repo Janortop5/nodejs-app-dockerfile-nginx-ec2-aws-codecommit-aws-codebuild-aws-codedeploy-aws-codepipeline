@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /imagedefinitions.json
+    destination: /opt/codedeploy-agent/deployment-root/deployment-instructions/
+hooks:
+  AfterInstall:
+    - location: deploy/install_dependencies.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: deploy/start_application.sh
+      timeout: 300
+      runas: root

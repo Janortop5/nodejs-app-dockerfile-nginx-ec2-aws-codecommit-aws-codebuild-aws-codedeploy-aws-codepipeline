@@ -1,0 +1,10 @@
+---
+- name: Setup code deploy agent on ubuntu
+  hosts: web_servers
+  remote_user: ubuntu
+  become: yes
+  vars_files:
+  - vars/codedeploy.yml
+
+  roles:
+  - codedeploy_agent

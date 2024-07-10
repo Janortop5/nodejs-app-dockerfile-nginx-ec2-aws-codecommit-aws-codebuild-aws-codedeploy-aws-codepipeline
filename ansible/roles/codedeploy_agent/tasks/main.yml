@@ -1,0 +1,47 @@
+---
+- name: Install and Enable CodeDeploy Agent
+  become: yes
+  block:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - ruby-full
+          - wget
+        state: present
+
+    - name: Download CodeDeploy agent installation script
+      get_url:
+        url: https://aws-codedeploy-{{ aws_region }}.s3.amazonaws.com/latest/install
+        dest: /tmp/codedeploy-install
+        mode: '0755'
+
+    - name: Install CodeDeploy agent
+      command: /tmp/codedeploy-install auto
+      args:
+        creates: /opt/codedeploy-agent/bin/codedeploy-agent
+
+    - name: Enable and start CodeDeploy agent
+      systemd:
+        name: codedeploy-agent
+        state: started
+        enabled: yes
+        daemon_reload: yes
+
+    - name: Clean up installation script
+      file:
+        path: /tmp/codedeploy-install
+        state: absent
+
+    - name: Verify CodeDeploy agent is running
+      command: systemctl is-active codedeploy-agent
+      register: codedeploy_status
+      changed_when: false
+      failed_when: codedeploy_status.rc != 0
+
+    - name: Display CodeDeploy agent status
+      debug:
+        msg: "CodeDeploy agent is {{ codedeploy_status.stdout }}"
