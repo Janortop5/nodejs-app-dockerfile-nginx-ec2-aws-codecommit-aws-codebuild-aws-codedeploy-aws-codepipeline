@@ -22,4 +22,6 @@ phases:
       - printf '[{"name":"endowdAfrica","imageUri":"%s"}]' 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_37:latest > imagedefinitions.json
 
 artifacts:
-  files: imagedefinitions.json
+  files: 
+    - imagedefinitions.json
+    - appspec.yml
