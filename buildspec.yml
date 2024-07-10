@@ -11,15 +11,15 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t endowdafrica:latest .
-      - docker tag endowdafrica:latest 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_37:latest
+      - docker tag endowdafrica:latest 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_05:latest
   
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_37:latest
+      - docker push 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_05:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"endowdAfrica","imageUri":"%s"}]' 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_37:latest > imagedefinitions.json
+      - printf '[{"name":"container-name","imageUri":"%s"}]' 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_05:latest > imagedefinitions.json
 
 artifacts:
   files: 
