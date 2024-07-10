@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     nginx \
     dos2unix \
     && rm -rf /var/lib/apt/lists/* \
+    && cd /app \    
     && git clone https://github.com/Dejanor/provision-private-nginx-servers-using-bashscripting---nodejs-bash-script-alb-namedotcom.git /app \ 
     && cd /app \
     && dos2unix ./deploy-node-app.sh \
