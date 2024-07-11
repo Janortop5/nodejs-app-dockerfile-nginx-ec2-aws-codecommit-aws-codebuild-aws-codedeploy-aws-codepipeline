@@ -25,3 +25,5 @@ artifacts:
   files: 
     - imagedefinitions.json
     - appspec.yml
+    - deploy/install_dependencies.sh
+    - deploy/start_application.sh
