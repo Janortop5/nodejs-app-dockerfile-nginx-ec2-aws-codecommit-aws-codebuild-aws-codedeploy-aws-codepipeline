@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /imagedefinitions.json
-    destination: /opt/codedeploy-agent/deployment-root/deployment-instructions/
+    destination: /opt/codedeploy-agent/deployment-root/
 hooks:
   AfterInstall:
     - location: deploy/install_dependencies.sh
