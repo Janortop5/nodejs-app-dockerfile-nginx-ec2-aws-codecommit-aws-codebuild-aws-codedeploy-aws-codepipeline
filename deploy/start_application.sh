@@ -5,4 +5,10 @@ docker stop $(docker ps -a -q) || true
 docker rm $(docker ps -a -q) || true
 
 # Run the new container
-docker run -d -p 80:3000 767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_37:latest
+# The ECR_URI environment variable should be set in the CodeDeploy deployment configuration
+if [ -z "$ECR_URI" ]; then
+    echo "Error: ECR_URI is not set. Cannot start the container." >&2
+    exit 1
+fi
+
+docker run -d -p 80:3000 $ECR_URI
