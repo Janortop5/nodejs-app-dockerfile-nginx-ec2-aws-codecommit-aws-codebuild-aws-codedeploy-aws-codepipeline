@@ -1,14 +1,21 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Install Docker if not already installed
 if ! [ -x "$(command -v docker)" ]; then
     echo 'Installing Docker...' >&2
     curl -fsSL https://get.docker.com -o get-docker.sh
     sh get-docker.sh
-    usermod -aG docker $USER
+    # Create docker group if it doesn't exist
+    if ! getent group docker > /dev/null; then
+        sudo groupadd docker
+    fi
+    sudo usermod -aG docker $USER
+    # Start and enable Docker service
     systemctl start docker
     systemctl enable docker
 fi
+
+sudo usermod -aG docker $USER
 
 # Authenticate Docker with ECR
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397895765.dkr.ecr.us-east-1.amazonaws.com
