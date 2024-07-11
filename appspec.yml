@@ -4,6 +4,10 @@ files:
   - source: /imagedefinitions.json
     destination: /opt/codedeploy-agent/deployment-root/deployment-instructions/
 hooks:
+  BeforeInstall:
+    - location: deploy/create_env_vars.sh
+      timeout: 300
+      runas: root
   AfterInstall:
     - location: deploy/install_dependencies.sh
       timeout: 300
@@ -12,7 +16,3 @@ hooks:
     - location: deploy/start_application.sh
       timeout: 300
       runas: root
-environment_variables:
-  ECR_URI: 
-    value: "767397895765.dkr.ecr.us-east-1.amazonaws.com/endowdafrica_05:latest"
-    type: plaintext

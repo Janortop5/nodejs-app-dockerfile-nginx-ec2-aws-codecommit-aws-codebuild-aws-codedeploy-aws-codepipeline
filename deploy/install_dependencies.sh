@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+ECR_URI=$(jq -r '.[0].imageUri' /opt/codedeploy-agent/deployment-root/imagedefinitions.json)
+
 # Install Docker if not already installed
 if ! [ -x "$(command -v docker)" ]; then
     echo 'Installing Docker...' >&2
@@ -27,4 +29,4 @@ if [ -z "$ECR_URI" ]; then
     exit 1
 fi
 
-docker pull $ECR_URI
+docker pull $ECR_URI:latest
