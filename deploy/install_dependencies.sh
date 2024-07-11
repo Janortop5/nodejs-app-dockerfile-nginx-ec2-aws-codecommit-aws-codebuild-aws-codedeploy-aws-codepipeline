@@ -29,4 +29,4 @@ if [ -z "$ECR_URI" ]; then
     exit 1
 fi
 
-docker pull $ECR_URI:latest
+docker pull $ECR_URI

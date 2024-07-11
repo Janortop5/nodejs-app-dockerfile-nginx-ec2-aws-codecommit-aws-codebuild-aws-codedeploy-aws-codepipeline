@@ -13,4 +13,4 @@ if [ -z "$ECR_URI" ]; then
     exit 1
 fi
 
-docker run -d -p 80:3000 $ECR_URI:latest
+docker run -d -p 80:3000 $ECR_URI
