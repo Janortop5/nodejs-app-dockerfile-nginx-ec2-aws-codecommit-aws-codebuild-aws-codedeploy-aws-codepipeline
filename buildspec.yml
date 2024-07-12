@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - python secret_manager.py
-        
+        # random comment to run pipeline 
   build:
     commands:
       - echo Build started on `date`
