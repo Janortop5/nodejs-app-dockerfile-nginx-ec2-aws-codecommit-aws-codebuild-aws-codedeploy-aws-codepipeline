@@ -34,6 +34,7 @@ const server = http.createServer((req, res) => {
     <body>
       <h1>Hostname: ${hostname}</h1>
       <p>IP address: ${ipAddress}</p>
+      <p>Assessment Complete!</p>
       <p>Copyright &copy; Emmanuel Aladejana</p>
     </body>
   </html>`);
