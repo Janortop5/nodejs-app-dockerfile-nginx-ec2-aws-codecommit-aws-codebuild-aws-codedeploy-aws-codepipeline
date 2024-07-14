@@ -475,9 +475,9 @@ TTL: 300
 IP: 3.84.223.10
 
 # Successful Pipeline
-![pipeline successful](images/pipeline_successful_1)
+![pipeline successful](images/pipeline_successful_1.png)
 
-![pipeline successful](images/pipeline_successful_2)
+![pipeline successful](images/pipeline_successful_2.png)
 
 
 
