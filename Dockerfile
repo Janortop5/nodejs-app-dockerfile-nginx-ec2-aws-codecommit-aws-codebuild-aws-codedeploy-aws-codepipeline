@@ -25,4 +25,4 @@ RUN bash ./deploy-node-app.sh
 EXPOSE 3000
 
 # Start both Node.js app and Nginx
-CMD node server.js & nginx -g 'daemon off;'
+CMD ["node server.js & nginx -g 'daemon off;'"]
