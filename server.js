@@ -1,5 +1,8 @@
 const http = require("http");
 const os = require("os");
+const express = require('express');
+const app = express();
+const path = require('path')
 
 const hostname = os.hostname();
 const interfaces = os.networkInterfaces();
@@ -40,6 +43,16 @@ const server = http.createServer((req, res) => {
   </html>`);
 });
 
-server.listen(3000, () => {
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Default route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
+app.listen(3000, () => {
   console.log("Server running at http://localhost:3000/");
 });
